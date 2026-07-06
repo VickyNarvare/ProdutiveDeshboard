@@ -171,7 +171,7 @@
         </button>
 
         <div class="todoContainer">
-          <div class="todoForm">
+          <form class="todoForm" id="todoForm">
             <h2>Add Todo</h2>
 
             <div class="inputGroup">
@@ -179,6 +179,7 @@
               <input
                 type="text"
                 id="todoTitle"
+                required
                 placeholder="Enter todo title..."
               />
             </div>
@@ -187,21 +188,21 @@
               <label>Description</label>
               <textarea
                 id="todoDescription"
+                required
                 placeholder="Write something..."
               ></textarea>
             </div>
+
 
             <button id="addTodoBtn" class="addTodoBtn">
               <i class="ri-add-line"></i>
               Add Todo
             </button>
-          </div>
+          </form>
           <div class="todoCards">
             <h3>Your Tasks</h3>
 
-            <div class="todoList">  <!--todo container -->
-              
-            </div>
+            <div class="todoList">
           </div>
         </div>
       </section>

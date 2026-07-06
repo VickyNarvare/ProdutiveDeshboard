@@ -19,7 +19,7 @@ const wind = document.querySelector("#wind");
 const weatherIcon = document.querySelector("#weatherIcon");
 const city = "Indore";
 
-const stopWatchButton = document.querySelector("#stopWatchButton"); 
+const stopWatchButton = document.querySelector("#stopWatchButton");
 const stopWatchOverlay = document.querySelector("#stopWatchOverlay");
 const closeStopWatchOverlay = document.querySelector("#closeStopWatchOverlay");
 
@@ -35,6 +35,9 @@ const stopWatchText = document.querySelector("#timerDisplay");
 const startBtn = document.querySelector("#startTimer");
 const pauseBtn = document.querySelector("#pauseTimer");
 const stopBtn = document.querySelector("#stopTimer");
+
+const todoForm = document.querySelector("#todoForm");
+const todoCardCon = document.querySelector(".todoList");
 
 const close = (overlay, button) => {
   button.addEventListener("click", () => {
@@ -137,15 +140,86 @@ const fetchWeather = async () => {
 };
 fetchWeather();
 
-const todoUi = (title, description) => {
-  return `<div class="todoCard">
-                <div class="todoTop">
-                  <h4>${title}</h4>
-                  <div class="todoActions">
-                    <button><i class="ri-check-line" ></i></button>
-                    <button><i class="ri-delete-bin-6-line"></i></button>
-                  </div>
-                </div>
-                <p>${description}</p>
-              </div>`;
+const TodoData = JSON.parse(localStorage.getItem("todoData")) || [];
+
+const todoUi = (title, description, idx, ifCompleted) => {
+  return `
+    <div class="todoCard ${ifCompleted ? "completed" : ""}" data-index="${idx}">
+      <span class="priority important">Important</span>
+
+      <div class="todoTop">
+        <h4>${title}</h4>
+
+        <div class="todoActions">
+          <button onclick="completeTodo(this)">
+            <i class="ri-check-line"></i>
+          </button>
+
+          <button onclick="deleteTodo(this)">
+            <i class="ri-delete-bin-6-line"></i>
+          </button>
+        </div>
+      </div>
+
+      <p>${description}</p>
+    </div>
+  `;
+};
+
+const renderTodos = () => {
+  todoCardCon.innerHTML = "";
+
+  TodoData.forEach((todo, idx) => {
+    todoCardCon.innerHTML += todoUi(
+      todo.title,
+      todo.description,
+      idx,
+      todo.ifCompleted,
+    );
+  });
+};
+
+renderTodos();
+
+todoForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  const title = document.querySelector("#todoTitle").value.trim();
+  const description = document.querySelector("#todoDescription").value.trim();
+
+  if (!title || !description) return;
+
+  TodoData.push({
+    title,
+    description,
+    ifCompleted: false,
+  });
+
+  localStorage.setItem("todoData", JSON.stringify(TodoData));
+
+  renderTodos();
+
+  todoForm.reset();
+});
+
+const completeTodo = (button) => {
+  const todoCard = button.closest(".todoCard");
+  const idx = Number(todoCard.dataset.index);
+
+  TodoData[idx].ifCompleted = !TodoData[idx].ifCompleted;
+
+  localStorage.setItem("todoData", JSON.stringify(TodoData));
+
+  renderTodos();
+};
+
+const deleteTodo = (button) => {
+  const todoCard = button.closest(".todoCard");
+  const idx = Number(todoCard.dataset.index);
+
+  TodoData.splice(idx, 1);
+
+  localStorage.setItem("todoData", JSON.stringify(TodoData));
+
+  renderTodos();
 };

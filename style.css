@@ -472,223 +472,235 @@ main {
 .timerBtn:active {
   transform: scale(.8);
 }
+
 /* ================= Todo Overlay ================= */
 
-.todoContainer{
-    width:100%;
-    height:100%;
-    display:flex;
-    gap:35px;
-    padding:70px 50px;
+.todoContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  gap: 35px;
+  padding: 70px 50px;
 }
 
-.todoForm{
-    width:35%;
-    background:rgba(255,255,255,.08);
-    backdrop-filter:blur(20px);
-    border:1px solid rgba(255,255,255,.12);
-    border-radius:25px;
-    padding:30px;
+.todoForm {
+  width: 35%;
+  background: rgba(255, 255, 255, .08);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: 25px;
+  padding: 30px;
 
-    display:flex;
-    flex-direction:column;
+  display: flex;
+  flex-direction: column;
 }
 
-.todoForm h2{
-    font-size:3.2rem;
-    margin-bottom:30px;
+.todoForm h2 {
+  font-size: 3.2rem;
+  margin-bottom: 30px;
 
-    display:flex;
-    align-items:center;
-    gap:10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.inputGroup{
-    display:flex;
-    flex-direction:column;
-    margin-bottom:20px;
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
 }
 
-.inputGroup label{
-    font-size:1.6rem;
-    margin-bottom:8px;
+.inputGroup label {
+  font-size: 1.6rem;
+  margin-bottom: 8px;
 }
 
 .inputGroup input,
-.inputGroup textarea{
+.inputGroup textarea {
 
-    width:100%;
-    border:none;
-    outline:none;
+  width: 100%;
+  border: none;
+  outline: none;
 
-    padding:16px;
-    border-radius:12px;
+  padding: 16px;
+  border-radius: 12px;
 
-    background:rgba(255,255,255,.08);
+  background: rgba(255, 255, 255, .08);
 
-    color:#fff;
-    font-size:1.6rem;
+  color: #fff;
+  font-size: 1.6rem;
 }
 
-.inputGroup textarea{
-    min-height:180px;
-    resize:none;
+.inputGroup textarea {
+  min-height: 180px;
+  resize: none;
 }
 
 .inputGroup input::placeholder,
-.inputGroup textarea::placeholder{
-    color:rgba(255,255,255,.6);
+.inputGroup textarea::placeholder {
+  color: rgba(255, 255, 255, .6);
 }
 
-.addTodoBtn{
+.addTodoBtn {
 
-    margin-top:auto;
+  margin-top: auto;
 
-    padding:18px;
+  padding: 18px;
 
-    border:none;
-    border-radius:14px;
+  border: none;
+  border-radius: 14px;
 
-    background:#3b82f6;
+  background: #3b82f6;
 
-    color:#fff;
+  color: #fff;
 
-    font-size:1.8rem;
-    font-weight:600;
+  font-size: 1.8rem;
+  font-weight: 600;
 
-    cursor:pointer;
+  cursor: pointer;
 
-    transition:.3s;
+  transition: .3s;
 }
 
-.addTodoBtn:hover{
-    background:#2563eb;
+.addTodoBtn:hover {
+  background: #2563eb;
 }
 
-.addTodoBtn:active{
-    transform:scale(.95);
+.addTodoBtn:active {
+  transform: scale(.95);
 }
 
-
-.todoCards{
-
-    flex:1;
-
-    display:flex;
-    flex-direction:column;
+.priority {
+  display: inline-block;
+  padding: 6px 14px;
+  margin: 12px 0;
+  border-radius: 20px;
+  font-size: 1.3rem;
+  font-weight: 600;
 }
 
-.todoCards h3{
-
-    font-size:3rem;
-    margin-bottom:20px;
-
+.priority.important {
+  background: #facc1533;
+  color: #facc15;
 }
 
-.todoList{
+.todoCards {
 
-    flex:1;
+  flex: 1;
 
-    overflow-y:auto;
-
-    display:flex;
-    flex-direction:column;
-
-    gap:20px;
-
-    padding-right:10px;
-
-}
-.todoCard{
-
-    background:rgba(255,255,255,.08);
-
-    border:1px solid rgba(255,255,255,.12);
-
-    border-radius:18px;
-
-    padding:22px;
-
-    transition:.3s;
+  display: flex;
+  flex-direction: column;
 }
 
-.todoCard:hover{
+.todoCards h3 {
 
-    transform:translateY(-4px);
-
-    background:rgba(255,255,255,.12);
+  font-size: 3rem;
+  margin-bottom: 20px;
 
 }
 
-.todoTop{
+.todoList {
 
-    display:flex;
+  flex: 1;
 
-    justify-content:space-between;
+  overflow-y: auto;
 
-    align-items:center;
+  display: flex;
+  flex-direction: column;
 
-    margin-bottom:12px;
-}
+  gap: 20px;
 
-.todoTop h4{
-
-    font-size:2.2rem;
-}
-
-.todoActions{
-
-    display:flex;
-    gap:10px;
-}
-
-.todoActions button{
-
-    width:40px;
-    height:40px;
-
-    border:none;
-
-    border-radius:50%;
-
-    background:rgba(255,255,255,.12);
-
-    color:#fff;
-
-    cursor:pointer;
-
-    font-size:1.8rem;
-
-    transition:.3s;
-}
-
-.todoActions button:hover{
-
-    background:#3b82f6;
+  padding-right: 10px;
 
 }
 
-.todoCard p{
-
-    font-size:1.6rem;
-
-    line-height:1.6;
-
-    opacity:.8;
-
-    margin-bottom:15px;
+.todoList::-webkit-scrollbar {
+  width: 0;
 }
 
-.todoCard span{
+.todoCard {
+  background: rgba(255, 255, 255, .08);
+  border: 1px solid rgba(255, 255, 255, .12);
+  border-radius: 18px;
+  padding: 22px;
+  transition: .3s;
+}
 
-    display:inline-block;
+.completed {
+  background-color: rgba(231, 14, 14, 0.214);
+  text-decoration: line-through;
+}
 
-    padding:7px 14px;
+.todoActions {
+  text-decoration: none;
+}
 
-    border-radius:20px;
+.todoTop {
 
-    background:rgba(59,130,246,.25);
+  display: flex;
 
-    font-size:1.3rem;
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-bottom: 12px;
+}
+
+.todoTop h4 {
+
+  font-size: 2.2rem;
+}
+
+.todoActions {
+
+  display: flex;
+  gap: 10px;
+}
+
+.todoActions button {
+
+  width: 40px;
+  height: 40px;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: rgba(255, 255, 255, .12);
+
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.8rem;
+  transition: .3s;
+}
+
+.todoActions button:hover {
+
+  background: #3b82f6;
+
+}
+
+.todoCard p {
+
+  font-size: 1.6rem;
+
+  line-height: 1.6;
+
+  opacity: .8;
+
+  margin-bottom: 15px;
+}
+
+.todoCard span {
+
+  display: inline-block;
+
+  padding: 7px 14px;
+
+  border-radius: 20px;
+
+  background: rgba(59, 130, 246, .25);
+
+  font-size: 1.3rem;
 
 }
