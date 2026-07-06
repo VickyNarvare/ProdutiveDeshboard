@@ -94,11 +94,11 @@
             <i class="ri-timer-line"></i>
           </div>
 
-          <div class="circle" title="Todo List">
+          <div class="circle" title="Todo List" id="todoListButton">
             <i class="ri-todo-line"></i>
           </div>
 
-          <div class="circle" title="Daily Goal">
+          <div class="circle" title="Daily Goal" id="dailyGoalButton">
             <i class="ri-target-fill"></i>
           </div>
         </div>
@@ -139,6 +139,74 @@
 
       <section class="overlay" id="stopWatchOverlay">
         <button class="close-btn" id="closeStopWatchOverlay">
+          <i class="ri-close-fill"></i>
+        </button>
+
+        <div class="stopwatchContainer">
+          <h2 class="stopwatchTitle">Focus Timer</h2>
+
+          <p class="sessionLabel">Coding Session...</p>
+
+          <div class="timerDisplay" id="timerDisplay">00:00</div>
+
+          <div class="timerControls">
+            <button class="timerBtn startBtn" id="startTimer">
+              <i class="ri-play-fill"></i>
+              Start
+            </button>
+            <button class="timerBtn resetBtn" id="resetTimer">
+              <i class="ri-refresh-line"></i>
+              Reset
+            </button>
+            <button class="timerBtn pauseBtn" id="pauseTimer">
+              <i class="ri-pause-fill"></i>
+              Pause
+            </button>
+          </div>
+        </div>
+      </section>
+      <section class="overlay" id="todoListOverlay">
+        <button class="close-btn" id="closeTodoListOverlay">
+          <i class="ri-close-fill"></i>
+        </button>
+
+        <div class="todoContainer">
+          <div class="todoForm">
+            <h2>Add Todo</h2>
+
+            <div class="inputGroup">
+              <label>Title</label>
+              <input
+                type="text"
+                id="todoTitle"
+                placeholder="Enter todo title..."
+              />
+            </div>
+
+            <div class="inputGroup">
+              <label>Description</label>
+              <textarea
+                id="todoDescription"
+                placeholder="Write something..."
+              ></textarea>
+            </div>
+
+            <button id="addTodoBtn" class="addTodoBtn">
+              <i class="ri-add-line"></i>
+              Add Todo
+            </button>
+          </div>
+          <div class="todoCards">
+            <h3>Your Tasks</h3>
+
+            <div class="todoList">  <!--todo container -->
+              
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="overlay" id="dailyGoalOverlay">
+        <button class="close-btn" id="closeDailyGoalOverlay">
           <i class="ri-close-fill"></i>
         </button>
       </section>

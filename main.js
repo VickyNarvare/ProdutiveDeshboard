@@ -19,9 +19,22 @@ const wind = document.querySelector("#wind");
 const weatherIcon = document.querySelector("#weatherIcon");
 const city = "Indore";
 
-const stopWatchButton = document.querySelector("#stopWatchButton"); //open
+const stopWatchButton = document.querySelector("#stopWatchButton"); 
 const stopWatchOverlay = document.querySelector("#stopWatchOverlay");
-const closeStopWatchOverlay = document.querySelector("#closeStopWatchOverlay"); //close
+const closeStopWatchOverlay = document.querySelector("#closeStopWatchOverlay");
+
+const todoListButton = document.querySelector("#todoListButton");
+const todoListOverlay = document.querySelector("#todoListOverlay");
+const closeTodoListOverlay = document.querySelector("#closeTodoListOverlay");
+
+const dailyGoalButton = document.querySelector("#dailyGoalButton");
+const dailyGoalOverlay = document.querySelector("#dailyGoalOverlay");
+const closeDailyGoalOverlay = document.querySelector("#closeDailyGoalOverlay");
+
+const stopWatchText = document.querySelector("#timerDisplay");
+const startBtn = document.querySelector("#startTimer");
+const pauseBtn = document.querySelector("#pauseTimer");
+const stopBtn = document.querySelector("#stopTimer");
 
 const close = (overlay, button) => {
   button.addEventListener("click", () => {
@@ -34,6 +47,18 @@ const open = (overlay, button) => {
   });
 };
 
+open(stopWatchOverlay, stopWatchButton);
+close(stopWatchOverlay, closeStopWatchOverlay);
+
+open(todoListOverlay, todoListButton);
+close(todoListOverlay, closeTodoListOverlay);
+
+open(dailyGoalOverlay, dailyGoalButton);
+close(dailyGoalOverlay, closeDailyGoalOverlay);
+
+open(quoteOverlay, quoteButton);
+close(quoteOverlay, closeQuoteOverlay);
+
 const getQuote = async () => {
   try {
     const response = await fetch("https://dummyjson.com/quotes/random");
@@ -45,9 +70,6 @@ const getQuote = async () => {
   }
 };
 getQuote();
-
-open(quoteOverlay, quoteButton);
-close(quoteOverlay, closeQuoteOverlay);
 
 refreshBtn.addEventListener("click", () => {
   getQuote();
@@ -109,12 +131,21 @@ const fetchWeather = async () => {
     const { text, icon } = data.current.condition;
     const { humidity, temp_c, wind_kph } = data.current;
     WeatherUi(text, icon, humidity, temp_c, wind_kph);
-    console.log(text);
   } catch (error) {
     alert(error.message);
   }
 };
 fetchWeather();
 
-open(stopWatchOverlay, stopWatchButton);
-close(stopWatchOverlay, closeStopWatchOverlay);
+const todoUi = (title, description) => {
+  return `<div class="todoCard">
+                <div class="todoTop">
+                  <h4>${title}</h4>
+                  <div class="todoActions">
+                    <button><i class="ri-check-line" ></i></button>
+                    <button><i class="ri-delete-bin-6-line"></i></button>
+                  </div>
+                </div>
+                <p>${description}</p>
+              </div>`;
+};
