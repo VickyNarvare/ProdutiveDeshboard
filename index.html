@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Productive Dashboard</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@4.9.0/fonts/remixicon.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <h1>Productive Dashboard</h1>
+
+      <section class="productiveCon">
+        <div class="dashboard-card">
+          <div class="card-header">
+            <div class="date-time">
+              <h2 class="time">00:00:00 PM</h2>
+              <p class="date">Day, 00 Month 0000</p>
+            </div>
+
+            <div class="weather-icon">
+              <img
+                id="weatherIcon"
+                src="https://cdn.weatherapi.com/weather/64x64/night/353.png"
+                alt="Wether Icon Loading..."
+              />
+            </div>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="weather-grid">
+            <div class="weather-item">
+              <i class="ri-temp-hot-line"></i>
+
+              <div>
+                <h3 id="temperature">00</h3>
+                <p>Temperature</p>
+              </div>
+            </div>
+
+            <div class="weather-item">
+              <i class="ri-cloud-line"></i>
+
+              <div>
+                <h3 id="condition">Light rain shower</h3>
+                <p>Condition</p>
+              </div>
+            </div>
+
+            <div class="weather-item">
+              <i class="ri-water-percent-line"></i>
+
+              <div>
+                <h3 id="humidity">00%</h3>
+                <p>Humidity</p>
+              </div>
+            </div>
+
+            <div class="weather-item">
+              <i class="ri-windy-line"></i>
+
+              <div>
+                <h3 id="wind">00km/h</h3>
+                <p>Wind</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="productiveFunc">
+          <div class="circle theme-toggle" title="Theme Toggle">
+            <i class="ri-sun-line" id="themeIcon"></i>
+          </div>
+          <div class="circle" title="Github">
+            <a
+              href="https://github.com/VickyNarvare/"
+              target="_blank"
+              class="github-btn"
+              title="GitHub"
+            >
+              <i class="ri-github-fill"></i>
+            </a>
+          </div>
+
+          <div class="circle" id="quoteButton" title="Motivational Quote">
+            <i class="ri-double-quotes-l"></i>
+          </div>
+
+          <div class="circle" title="Stop Watch" id="stopWatchButton">
+            <i class="ri-timer-line"></i>
+          </div>
+
+          <div class="circle" title="Todo List">
+            <i class="ri-todo-line"></i>
+          </div>
+
+          <div class="circle" title="Daily Goal">
+            <i class="ri-target-fill"></i>
+          </div>
+        </div>
+      </section>
+
+      <section class="overlay" id="Quote-overlay">
+        <div class="quote-container">
+          <button class="close-btn" id="closeQuoteOverlay">
+            <i class="ri-close-fill"></i>
+          </button>
+
+          <div class="quote-icon">
+            <i class="ri-double-quotes-l"></i>
+          </div>
+
+          <h2 class="quote">Quote Generating...</h2>
+
+          <div class="divider">
+            <span><i class="ri-shining-2-fill"></i></span>
+          </div>
+
+          <div class="author">
+            <div class="avatar">
+              <i class="ri-user-3-fill"></i>
+            </div>
+
+            <div>
+              <h3 id="QuoteAuthor">Finding Author...</h3>
+              <p>Author</p>
+            </div>
+          </div>
+
+          <button class="refresh">
+            <i class="ri-reset-left-line"></i>
+          </button>
+        </div>
+      </section>
+
+      <section class="overlay" id="stopWatchOverlay">
+        <button class="close-btn" id="closeStopWatchOverlay">
+          <i class="ri-close-fill"></i>
+        </button>
+      </section>
+    </main>
+
+    <script src="main.js"></script>
+  </body>
+</html>
