@@ -34,7 +34,7 @@ const closeDailyGoalOverlay = document.querySelector("#closeDailyGoalOverlay");
 const stopWatchText = document.querySelector("#timerDisplay");
 const startBtn = document.querySelector("#startTimer");
 const pauseBtn = document.querySelector("#pauseTimer");
-const stopBtn = document.querySelector("#stopTimer");
+const resetBtn = document.getElementById("resetTimer");
 
 const todoForm = document.querySelector("#todoForm");
 const todoCardCon = document.querySelector(".todoList");
@@ -85,10 +85,14 @@ function applyTheme() {
     main.style.backgroundImage = "url('./images/nightBg.png')";
     themeIcon.className = "ri-moon-clear-fill";
     themeToggle.classList.add("active");
+    document.body.classList.remove("light");
+    document.body.classList.add("dark");
   } else {
     main.style.backgroundImage = "url('./images/dayBg.png')";
     themeIcon.className = "ri-sun-line";
     themeToggle.classList.remove("active");
+    document.body.classList.remove("dark");
+    document.body.classList.add("light");
   }
 }
 applyTheme();
@@ -256,3 +260,42 @@ document.querySelectorAll(".plannerInput").forEach((input) => {
     localStorage.setItem("dayPlanData", JSON.stringify(dayPlanData));
   });
 });
+
+let seconds = 25 * 60;
+let timer = null;
+
+function StopWatchUiUpdate() {
+  const mins = String(Math.floor(seconds / 60)).padStart(2, "0");
+  const secs = String(seconds % 60).padStart(2, "0");
+
+  timerDisplay.textContent = `${mins}:${secs}`;
+}
+
+startBtn.addEventListener("click", () => {
+  if (timer !== null) return;
+
+  timer = setInterval(() => {
+    if (seconds > 0) {
+      seconds--;
+      StopWatchUiUpdate();
+    } else {
+      clearInterval(timer);
+      timer = null;
+      alert("Time's Up!");
+    }
+  }, 1000);
+});
+
+pauseBtn.addEventListener("click", () => {
+  clearInterval(timer);
+  timer = null;
+});
+
+resetBtn.addEventListener("click", () => {
+  clearInterval(timer);
+  timer = null;
+  seconds = 25 * 60; 
+  StopWatchUiUpdate();
+});
+
+StopWatchUiUpdate();

@@ -7,10 +7,6 @@
 }
 
 :root {
-  --primary: #3498db;
-  --textColor: #fff;
-  --secondary: #2ecc71;
-  --background: rgba(6, 44, 115, 0.3);
   --font: 'Roboto Condensed', sans-serif;
 }
 
@@ -24,10 +20,20 @@ html {
   font-size: 62.5%;
 }
 
-body {
-  font-family: var(--font);
-  color: var(--textColor);
+
+
+body.dark {
+  --textColor: #ffffff;
+  --background: rgba(15, 23, 42, 0.55);
+  --cardBg: rgba(255, 255, 255, 0.08);
 }
+
+body.light {
+  --textColor: #1f2937;
+  --background: rgba(255, 255, 255, 0.5);
+  --cardBg: rgba(255, 255, 255, 0.8);
+}
+
 
 h1 {
   text-align: center;
@@ -46,6 +52,7 @@ main {
   object-fit: cover;
   position: relative;
   transition: all ease 1s;
+  font-family: "Roboto";
 }
 
 .productiveCon {
@@ -54,6 +61,7 @@ main {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  color: var(--textColor);
 }
 
 .dashboard-card {
@@ -61,8 +69,6 @@ main {
   padding: 20px;
   align-self: flex-end;
   border-radius: 28px;
-
-  /* background: rgba(112, 195, 250, 0.3); */
   background: var(--background);
   backdrop-filter: blur(22px);
   -webkit-backdrop-filter: blur(22px);
@@ -130,9 +136,9 @@ main {
 
   border-radius: 18px;
 
-  background: rgba(255, 255, 255, .08);
+  background: var(--cardBg);
 
-  border: 1px solid rgba(255, 255, 255, .12);
+  border: 1px solid var(--cardBg);
 
   transition: .3s;
 }
@@ -141,7 +147,7 @@ main {
 
   transform: translateY(-5px);
 
-  background: rgba(255, 255, 255, .14);
+  background: var(--cardBg);
 
 }
 
@@ -156,7 +162,7 @@ main {
 
   border-radius: 50%;
 
-  background: rgba(255, 255, 255, .12);
+  background: var(--cardBg);
 
   font-size: 2.7rem;
 
@@ -299,7 +305,7 @@ main {
   height: 46px;
   border: none;
   border-radius: 50%;
-  background: rgba(255, 255, 255, .25);
+  background: var(--cardBg);
   color: var(--textColor);
   font-size: 28px;
   cursor: pointer;
@@ -328,6 +334,7 @@ main {
   font-weight: 600;
   line-height: 1.18;
   text-wrap: balance;
+  color: var(--textColor);
 }
 
 .divider {
@@ -370,8 +377,8 @@ main {
   place-items: center;
   font-size: 28px;
   color: #6b4eff;
-  background: rgba(255, 255, 255, .45);
-  border: 1px solid rgba(255, 255, 255, .55);
+  background: var(--cardBg);
+  border: 1px solid var(--cardBg);
 }
 
 .author h3 {
@@ -382,7 +389,7 @@ main {
 
 .author p {
   margin-top: 3px;
-  color:#ffffff71;
+  color: var(--textColor);
   font-size: 17px;
 }
 
@@ -394,7 +401,7 @@ main {
   height: 75px;
   border: none;
   border-radius: 50%;
-  background: rgba(255, 255, 255, .8);
+  background: var(--cardBg);
   color: #6b4eff;
   font-size: 34px;
   cursor: pointer;
@@ -416,6 +423,7 @@ main {
   justify-content: center;
   align-items: center;
   gap: 30px;
+  color: var(--textColor);
   padding: 40px;
 }
 
@@ -438,7 +446,7 @@ main {
   font-size: 17rem;
   font-weight: 900;
   letter-spacing: 4px;
-  text-shadow: 0 0 20px rgba(120, 180, 255, .4);
+  text-shadow: 0 0 20px var(--cardBg);
   font-family: "Roboto", sans-serif;
   text-align: center;
 }
@@ -474,8 +482,6 @@ main {
   transform: scale(.8);
 }
 
-/* ================= Todo Overlay ================= */
-
 .todoContainer {
   width: 100%;
   height: 100%;
@@ -486,9 +492,9 @@ main {
 
 .todoForm {
   width: 35%;
-  background: rgba(255, 255, 255, .08);
+  background: var(--cardBg);
   backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, .12);
+  border: 1px solid var(--cardBg);
   border-radius: 25px;
   padding: 30px;
 
@@ -526,9 +532,9 @@ main {
   padding: 16px;
   border-radius: 12px;
 
-  background: rgba(255, 255, 255, .08);
+  background: var(--cardBg);
 
-  color: #fff;
+  color: var(--textColor);
   font-size: 1.6rem;
 }
 
@@ -553,7 +559,7 @@ main {
 
   background: #3b82f6;
 
-  color: #fff;
+  color: var(--textColor);
 
   font-size: 1.8rem;
   font-weight: 600;
@@ -620,8 +626,8 @@ main {
 }
 
 .todoCard {
-  background: rgba(255, 255, 255, .08);
-  border: 1px solid rgba(255, 255, 255, .12);
+  background: var(--cardBg);
+  border: 1px solid var(--cardBg);
   border-radius: 18px;
   padding: 22px;
   transition: .3s;
@@ -663,9 +669,9 @@ main {
 
   border-radius: 50%;
 
-  background: rgba(255, 255, 255, .12);
+  background: var(--cardBg);
 
-  color: #fff;
+  color: var(--textColor);
   cursor: pointer;
   font-size: 1.8rem;
   transition: .3s;
@@ -721,14 +727,14 @@ main {
 }
 
 .planner-header h2 {
-  color: #fff;
+  color: var(--textColor);
   font-size: 2rem;
   margin-bottom: 6px;
 }
 
 .planner-header p {
   font-size: 1.5rem;
-  color: rgba(255, 255, 255, .7);
+  color: var(--textColor);
 }
 
 .planner-date {
@@ -737,9 +743,9 @@ main {
   gap: 10px;
 
   font-size: 1.5rem;
-  color: #fff;
+  color: var(--textColor);
 
-  background: rgba(255, 255, 255, .12);
+  background: var(--cardBg);
 
   padding: 12px 18px;
 
@@ -767,20 +773,20 @@ main {
 
   border-radius: 18px;
 
-  background: rgba(255, 255, 255, .08);
+  background: var(--cardBg);
 
-  border: 1px solid rgba(255, 255, 255, .12);
+  border: 1px solid var(--cardBg);
 
   transition: .3s;
 }
 
 .time-slot:hover {
-  background: rgba(255, 255, 255, 0.231);
+  background: var(--cardBg);
 }
 
 .time-slot h3 {
 
-  color: #fff;
+  color: var(--textColor);
   font-size: 1.5rem;
   margin-bottom: 15px;
 }
@@ -804,7 +810,7 @@ main {
 
 .time-slot input::placeholder {
 
-  color: rgba(255, 255, 255, 0.708);
+  color: var(--textColor);
 }
 
 
@@ -815,7 +821,7 @@ main {
 
 .planner-grid::-webkit-scrollbar-thumb {
 
-  background: rgba(255, 255, 255, .25);
+  background: var(--cardBg);
 
   border-radius: 20px;
 }
