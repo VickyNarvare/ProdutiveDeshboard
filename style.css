@@ -28,6 +28,9 @@ body.light {
   --cardBg: rgba(255, 255, 255, 0.285);
 }
 
+::selection {
+  background-color: #4597df;
+}
 
 h1 {
   text-align: center;
@@ -539,11 +542,7 @@ main {
 .inputGroup textarea {
   min-height: 180px;
   resize: none;
-}
-
-.inputGroup input::placeholder,
-.inputGroup textarea::placeholder {
-  color: rgba(255, 255, 255, .6);
+  font-family: "Roboto";
 }
 
 .addTodoBtn {
