@@ -78,19 +78,24 @@ refreshBtn.addEventListener("click", () => {
   getQuote();
 });
 
-let dark = false;
-themeToggle.addEventListener("click", () => {
-  dark = !dark;
+let dark = JSON.parse(localStorage.getItem("theme")) || false;
 
+function applyTheme() {
   if (dark) {
     main.style.backgroundImage = "url('./images/nightBg.png')";
     themeIcon.className = "ri-moon-clear-fill";
+    themeToggle.classList.add("active");
   } else {
     main.style.backgroundImage = "url('./images/dayBg.png')";
     themeIcon.className = "ri-sun-line";
+    themeToggle.classList.remove("active");
   }
-
-  themeToggle.classList.toggle("active");
+}
+applyTheme();
+themeToggle.addEventListener("click", () => {
+  dark = !dark;
+  localStorage.setItem("theme", JSON.stringify(dark));
+  applyTheme();
 });
 
 const clock = (time, date) => {
@@ -223,3 +228,31 @@ const deleteTodo = (button) => {
 
   renderTodos();
 };
+
+const plannerContainer = document.querySelector(".planner-grid");
+
+let dayPlanData = JSON.parse(localStorage.getItem("dayPlanData")) || [];
+function plannerTaskUi(time, value, index) {
+  plannerContainer.innerHTML += `
+        <div class="time-slot">
+            <h3>${time}</h3>
+            <input type="text" class="plannerInput" data-index="${index}" placeholder="Enter your Goal..." value="${value}"/>
+        </div>
+    `;
+}
+
+const hours = Array.from({ length: 18 }, (_, i) => {
+  return `${6 + i}:00 - ${7 + i}:00`;
+});
+
+hours.forEach((time, index) => {
+  plannerTaskUi(time, dayPlanData[index] || "", index);
+});
+
+document.querySelectorAll(".plannerInput").forEach((input) => {
+  input.addEventListener("input", function () {
+    const index = this.dataset.index;
+    dayPlanData[index] = this.value;
+    localStorage.setItem("dayPlanData", JSON.stringify(dayPlanData));
+  });
+});
