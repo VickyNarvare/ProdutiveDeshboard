@@ -92,6 +92,8 @@ function todolist() {
   });
 }
 todolist();
+
+
 function dailyplanner() {
   let maxsum = "";
   var dayplandata = JSON.parse(localStorage.getItem("dayplanData")) || {};

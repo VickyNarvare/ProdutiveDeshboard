@@ -631,10 +631,6 @@ main {
   text-decoration: line-through;
 }
 
-.todoActions {
-  text-decoration: none;
-}
-
 .todoTop {
 
   display: flex;
