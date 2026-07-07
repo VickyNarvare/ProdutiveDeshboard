@@ -98,15 +98,11 @@ main {
 .weather-icon {
   width: 90px;
   height: 90px;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   border-radius: 50%;
-
   background: rgba(255, 255, 255, .08);
-
   border: 1px solid rgba(255, 255, 255, .15);
 }
 
@@ -124,45 +120,30 @@ main {
 }
 
 .weather-item {
-
   display: flex;
   align-items: center;
   gap: 15px;
-
   padding: 18px;
-
   border-radius: 18px;
-
   background: var(--cardBg);
-
   border: 1px solid var(--cardBg);
-
   transition: .3s;
 }
 
 .weather-item:hover {
-
   transform: translateY(-5px);
-
   background: var(--cardBg);
-
 }
 
 .weather-item i {
-
   width: 55px;
   height: 55px;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   border-radius: 50%;
-
   background: var(--cardBg);
-
   font-size: 27px;
-
   color: #7DD3FC;
 }
 
@@ -197,20 +178,15 @@ main {
 .productiveFunc .circle {
   width: 70px;
   height: 70px;
-
   display: flex;
   justify-content: center;
   align-items: center;
-
   border-radius: 50%;
-
   background: var(--background);
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
-
   color: var(--textColor);
   font-size: 28px;
-
   cursor: pointer;
   transition: .35s;
 }
@@ -236,7 +212,6 @@ main {
   background: var(--background);
   backdrop-filter: blur(40px) saturate(180%);
   -webkit-backdrop-filter: blur(40px);
-
   box-shadow:
     0 25px 60px rgba(0, 0, 0, .18),
     inset 0 1px 1px var(--background);
@@ -249,23 +224,17 @@ main {
   width: 100%;
   height: 100%;
   padding: 60px;
-
   overflow: hidden;
-
 }
 
 .quote-container::before {
   content: "";
   position: absolute;
-
   width: 350px;
   height: 350px;
-
   top: -160px;
   left: -160px;
-
   border-radius: 50%;
-
   background: radial-gradient(circle,
       rgba(120, 95, 255, .45),
       transparent 70%);
@@ -274,13 +243,10 @@ main {
 .quote-container::after {
   content: "";
   position: absolute;
-
   width: 300px;
   height: 300px;
-
   right: -120px;
   bottom: -120px;
-
   border-radius: 50%;
   background: radial-gradient(circle,
       rgba(0, 191, 255, .25),
@@ -316,7 +282,6 @@ main {
 .close-btn:hover {
   background-color: var(--textColor);
   color: #7a5cff;
-
   transform: rotate(90deg);
 }
 
@@ -525,16 +490,12 @@ main {
 
 .inputGroup input,
 .inputGroup textarea {
-
   width: 100%;
   border: none;
   outline: none;
-
   padding: 16px;
   border-radius: 12px;
-
   background: var(--cardBg);
-
   color: var(--textColor);
   font-size: 16px;
 }
@@ -546,23 +507,15 @@ main {
 }
 
 .addTodoBtn {
-
   margin-top: auto;
-
   padding: 18px;
-
   border: none;
   border-radius: 14px;
-
   background: #3b82f6;
-
   color: var(--textColor);
-
   font-size: 18px;
   font-weight: 600;
-
   cursor: pointer;
-
   transition: .3s;
 }
 
@@ -589,10 +542,8 @@ main {
 }
 
 .todoCards {
-
   flex: 1;
   color: var(--textColor);
-
   display: flex;
   flex-direction: column;
 }
@@ -600,7 +551,6 @@ main {
 .todoCards h3 {
   font-size: 30px;
   margin-bottom: 20px;
-
 }
 
 .todoList {
@@ -610,7 +560,6 @@ main {
   flex-direction: column;
   gap: 20px;
   padding-right: 10px;
-
 }
 
 .todoList::-webkit-scrollbar {
@@ -638,27 +587,20 @@ main {
 }
 
 .todoTop h4 {
-
   font-size: 22px;
 }
 
 .todoActions {
-
   display: flex;
   gap: 10px;
 }
 
 .todoActions button {
-
   width: 40px;
   height: 40px;
-
   border: none;
-
   border-radius: 50%;
-
   background: var(--cardBg);
-
   color: var(--textColor);
   cursor: pointer;
   font-size: 18px;
@@ -666,43 +608,29 @@ main {
 }
 
 .todoActions button:hover {
-
   background: #3b82f6;
-
 }
 
 .todoCard p {
-
   font-size: 16px;
-
   line-height: 1.6;
-
   opacity: .8;
-
   margin-bottom: 15px;
 }
 
 .todoCard span {
-
   display: inline-block;
-
   padding: 7px 14px;
-
   border-radius: 20px;
-
   background: rgba(59, 130, 246, .25);
-
   font-size: 13px;
-
 }
 
 .daily-goal-card {
   position: relative;
   width: 95%;
   height: 92%;
-
   padding: 35px 0 0 0;
-
   overflow: hidden;
 }
 
@@ -729,42 +657,27 @@ main {
   display: flex;
   align-items: center;
   gap: 10px;
-
   font-size: 15px;
   color: var(--textColor);
-
   background: var(--cardBg);
-
   padding: 12px 18px;
-
   border-radius: 15px;
 }
 
 .planner-grid {
-
   height: calc(100% - 90px);
-
   display: grid;
-
   grid-template-columns: repeat(2, 1fr);
-
   gap: 18px;
-
   overflow-y: auto;
-
   padding-right: 8px;
 }
 
 .time-slot {
-
   padding: 18px;
-
   border-radius: 18px;
-
   background: var(--cardBg);
-
   border: 1px solid var(--cardBg);
-
   transition: .3s;
 }
 
@@ -773,43 +686,32 @@ main {
 }
 
 .time-slot h3 {
-
   color: var(--textColor);
   font-size: 15px;
   margin-bottom: 15px;
 }
 
 .time-slot input {
-
   width: 100%;
-
   padding: 12px 15px;
-
   border: none;
-
   outline: none;
-
   border-radius: 12px;
   color: var(--textColor);
   background-color: transparent;
-
   font-size: 20px;
 }
 
 .time-slot input::placeholder {
-
   color: var(--textColor);
 }
 
 
 .planner-grid::-webkit-scrollbar {
-
   width: 8px;
 }
 
 .planner-grid::-webkit-scrollbar-thumb {
-
   background: var(--cardBg);
-
   border-radius: 20px;
 }
