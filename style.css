@@ -7,10 +7,15 @@
   --warning: #F59E0B;
   --danger: #EF4444;
   --text: #F8FAFC;
+  --text-secondary: #E2E8F0;
+  --text-body: #CBD5E1;
   --muted: #94A3B8;
   --border: rgba(255, 255, 255, 0.15);
   --glass: rgba(255, 255, 255, 0.08);
   --glass-hover: rgba(255, 255, 255, 0.12);
+  --glass-item: rgba(255, 255, 255, 0.05);
+  --glass-item-hover: rgba(255, 255, 255, 0.10);
+  --glass-item-border: rgba(255, 255, 255, 0.06);
   --inner-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.1);
   --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.08);
   --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.12);
@@ -50,8 +55,53 @@ body.dark {
 }
 
 body.light {
-  --glass: rgba(255, 255, 255, 0.10);
-  --glass-hover: rgba(255, 255, 255, 0.16);
+  --text: #0F172A;
+  --text-secondary: #1E293B;
+  --text-body: #334155;
+  --muted: #64748B;
+  --border: rgba(148, 163, 184, 0.3);
+  --glass: rgba(255, 255, 255, 0.50);
+  --glass-hover: rgba(255, 255, 255, 0.62);
+  --glass-item: rgba(0, 0, 0, 0.035);
+  --glass-item-hover: rgba(0, 0, 0, 0.07);
+  --glass-item-border: rgba(0, 0, 0, 0.06);
+  --inner-highlight: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  --shadow-sm: 0 4px 16px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.10);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.14);
+}
+
+body.light .weather-detail i {
+  color: #0891B2;
+}
+
+body.light .location-badge i {
+  color: #0891B2;
+}
+
+body.light .focus-header i {
+  color: #6366F1;
+}
+
+body.light .widget-header i {
+  color: #6366F1;
+}
+
+body.light .streak-compact-left i {
+  color: #D97706;
+}
+
+body.light .glass-card:hover {
+  border-color: rgba(148, 163, 184, 0.4);
+}
+
+body.light .overlay {
+  --text: #F8FAFC;
+  --text-secondary: #E2E8F0;
+  --text-body: #CBD5E1;
+  --muted: #94A3B8;
+  --border: rgba(255, 255, 255, 0.15);
+  background: rgba(15, 23, 42, 0.5);
 }
 
 ::selection {
@@ -206,7 +256,7 @@ main {
 }
 
 .focus-section input {
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--glass-item);
   border: 1px solid var(--border);
   border-radius: var(--input-radius);
   padding: 12px 16px;
@@ -224,9 +274,9 @@ main {
 }
 
 .focus-section input:focus {
-  border-color: var(--primary);
-  background: rgba(124, 58, 237, 0.08);
-  box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.15);
+  border-color: #6366F1;
+  background: rgba(99, 102, 241, 0.06);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.12);
 }
 
 .weather-card {
@@ -270,8 +320,8 @@ main {
   justify-content: center;
   align-items: center;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid var(--border);
+  background: var(--glass-item);
+  border: 1px solid var(--glass-item-border);
   animation: float 4s ease-in-out infinite;
 }
 
@@ -312,13 +362,13 @@ main {
   gap: 10px;
   padding: 10px 12px;
   border-radius: 14px;
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: var(--glass-item);
+  border: 1px solid var(--glass-item-border);
   transition: all 0.3s ease;
 }
 
 .weather-detail:hover {
-  background: var(--glass-hover);
+  background: var(--glass-item-hover);
   transform: translateY(-2px);
 }
 
@@ -396,8 +446,12 @@ main {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.12);
+  background: var(--glass-item-border);
   transition: all 0.3s ease;
+}
+
+body.light .streak-dot.active {
+  box-shadow: 0 0 8px rgba(217, 119, 6, 0.35);
 }
 
 .streak-dot.active {
@@ -429,12 +483,20 @@ main {
   justify-content: center;
   align-items: center;
   border-radius: 16px;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--glass-item);
   border: 1px solid transparent;
   color: var(--muted);
   font-size: 22px;
   cursor: pointer;
   transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body.light .sidebar-btn {
+  color: #475569;
+}
+
+body.light .sidebar-btn:hover {
+  color: var(--primary);
 }
 
 .sidebar-btn:hover {
