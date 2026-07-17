@@ -2,20 +2,25 @@ const quoteButton = document.querySelector("#quoteButton");
 const quoteOverlay = document.querySelector("#Quote-overlay");
 const quoteText = document.querySelector(".quote");
 const quoteAuthor = document.querySelector("#QuoteAuthor");
-const refreshBtn = document.querySelector(".refresh");
+const refreshBtn = document.querySelector(".refresh-btn");
 const closeQuoteOverlay = document.querySelector("#closeQuoteOverlay");
 
 const themeToggle = document.querySelector(".theme-toggle");
 const themeIcon = document.querySelector("#themeIcon");
 const main = document.querySelector("main");
 
-const timeCon = document.querySelector(".time");
-const dateCon = document.querySelector(".date");
+const timeDisplay = document.querySelector("#timeDisplay");
+const dateDisplay = document.querySelector("#dateDisplay");
+const greeting = document.querySelector("#greeting");
 
 const temperature = document.querySelector("#temperature");
 const condition = document.querySelector("#condition");
 const humidity = document.querySelector("#humidity");
 const wind = document.querySelector("#wind");
+const feelsLike = document.querySelector("#feelsLike");
+const sunrise = document.querySelector("#sunrise");
+const sunset = document.querySelector("#sunset");
+const aqi = document.querySelector("#aqi");
 const weatherIcon = document.querySelector("#weatherIcon");
 const city = "Indore";
 
@@ -31,7 +36,7 @@ const dailyGoalButton = document.querySelector("#dailyGoalButton");
 const dailyGoalOverlay = document.querySelector("#dailyGoalOverlay");
 const closeDailyGoalOverlay = document.querySelector("#closeDailyGoalOverlay");
 
-const stopWatchText = document.querySelector("#timerDisplay");
+const timerDisplay = document.querySelector("#timerDisplay");
 const startBtn = document.querySelector("#startTimer");
 const pauseBtn = document.querySelector("#pauseTimer");
 const resetBtn = document.getElementById("resetTimer");
@@ -39,11 +44,15 @@ const resetBtn = document.getElementById("resetTimer");
 const todoForm = document.querySelector("#todoForm");
 const todoCardCon = document.querySelector(".todoList");
 
+const focusInput = document.querySelector("#focusInput");
+const streakCount = document.querySelector("#streakCount");
+
 const close = (overlay, button) => {
   button.addEventListener("click", () => {
     overlay.style.display = "none";
   });
 };
+
 const open = (overlay, button) => {
   button.addEventListener("click", () => {
     overlay.style.display = "flex";
@@ -96,36 +105,51 @@ function applyTheme() {
   }
 }
 applyTheme();
+
 themeToggle.addEventListener("click", () => {
   dark = !dark;
   localStorage.setItem("theme", JSON.stringify(dark));
   applyTheme();
 });
 
-const clock = (time, date) => {
-  timeCon.textContent = time;
-  dateCon.textContent = date;
-};
-setInterval(() => {
+function getGreeting() {
+  const hour = new Date().getHours();
+  if (hour < 12) return "Good Morning Vicky";
+  if (hour < 17) return "Good Afternoon Vicky";
+  if (hour < 21) return "Good Evening Vicky";
+  return "Good Night";
+}
+
+function updateClock() {
   const date = new Date();
-  const time = date.toLocaleTimeString("en-IN", {
-    hour12: true,
-  });
+  const time = date.toLocaleTimeString("en-IN", { hour12: true });
   const monthYear = date.toLocaleDateString("en-IN", {
     weekday: "long",
     day: "2-digit",
     month: "long",
     year: "numeric",
   });
-  clock(time, monthYear);
-}, 1000);
+  timeDisplay.textContent = time;
+  dateDisplay.textContent = monthYear;
+  greeting.textContent = getGreeting();
+}
 
-const WeatherUi = (text, icon, humidityText, temp_c, wind_kph) => {
+updateClock();
+setInterval(updateClock, 1000);
+
+const WeatherUi = (text, icon, humidityText, temp_c, wind_kph, feelslike_c, sunriseStr, sunsetStr, aqiValue) => {
   weatherIcon.setAttribute("src", `https:${icon}`);
-  temperature.textContent = `${temp_c}°C`;
+  temperature.textContent = `${Math.round(temp_c)}°`;
   humidity.textContent = `${humidityText}%`;
-  wind.textContent = `${wind_kph}km/h`;
+  wind.textContent = `${Math.round(wind_kph)} km/h`;
   condition.textContent = text;
+  feelsLike.textContent = `${Math.round(feelslike_c)}°`;
+  if (sunriseStr) sunrise.textContent = sunriseStr;
+  if (sunsetStr) sunset.textContent = sunsetStr;
+  if (aqiValue !== undefined) {
+    const aqiLabels = ["", "Good", "Fair", "Moderate", "Poor", "Very Poor"];
+    aqi.textContent = aqiLabels[aqiValue] || `${aqiValue}`;
+  }
 };
 
 WeatherUi();
@@ -133,18 +157,19 @@ WeatherUi();
 const fetchWeather = async () => {
   try {
     const response = await fetch(
-      `https://api.weatherapi.com/v1/forecast.json?key=6ea60cf711b7495e81961239250808&q=${city}`,
+      `https://api.weatherapi.com/v1/forecast.json?key=6ea60cf711b7495e81961239250808&q=${city}&aqi=yes`
     );
     if (!response.ok) {
       throw new Error("City not found");
     }
-
     const data = await response.json();
     const { text, icon } = data.current.condition;
-    const { humidity, temp_c, wind_kph } = data.current;
-    WeatherUi(text, icon, humidity, temp_c, wind_kph);
+    const { humidity, temp_c, wind_kph, feelslike_c, air_quality } = data.current;
+    const { sunrise: sunriseStr, sunset: sunsetStr } = data.forecast.forecastday[0].astro;
+    const aqiValue = air_quality && air_quality["us-epa-index"];
+    WeatherUi(text, icon, humidity, temp_c, wind_kph, feelslike_c, sunriseStr, sunsetStr, aqiValue);
   } catch (error) {
-    alert(error.message);
+    console.error(error);
   }
 };
 fetchWeather();
@@ -155,21 +180,17 @@ const todoUi = (title, description, idx, ifCompleted) => {
   return `
     <div class="todoCard ${ifCompleted ? "completed" : ""}" data-index="${idx}">
       <span class="priority important">Important</span>
-
       <div class="todoTop">
         <h4>${title}</h4>
-
         <div class="todoActions">
           <button onclick="completeTodo(this)">
             <i class="ri-check-line"></i>
           </button>
-
           <button onclick="deleteTodo(this)">
             <i class="ri-delete-bin-6-line"></i>
           </button>
         </div>
       </div>
-
       <p>${description}</p>
     </div>
   `;
@@ -177,14 +198,8 @@ const todoUi = (title, description, idx, ifCompleted) => {
 
 const renderTodos = () => {
   todoCardCon.innerHTML = "";
-
   TodoData.forEach((todo, idx) => {
-    todoCardCon.innerHTML += todoUi(
-      todo.title,
-      todo.description,
-      idx,
-      todo.ifCompleted,
-    );
+    todoCardCon.innerHTML += todoUi(todo.title, todo.description, idx, todo.ifCompleted);
   });
 };
 
@@ -192,63 +207,44 @@ renderTodos();
 
 todoForm.addEventListener("submit", (e) => {
   e.preventDefault();
-
   const title = document.querySelector("#todoTitle").value.trim();
   const description = document.querySelector("#todoDescription").value.trim();
-
   if (!title || !description) return;
-
-  TodoData.push({
-    title,
-    description,
-    ifCompleted: false,
-  });
-
+  TodoData.push({ title, description, ifCompleted: false });
   localStorage.setItem("todoData", JSON.stringify(TodoData));
-
   renderTodos();
-
   todoForm.reset();
 });
 
 const completeTodo = (button) => {
   const todoCard = button.closest(".todoCard");
   const idx = Number(todoCard.dataset.index);
-
   TodoData[idx].ifCompleted = !TodoData[idx].ifCompleted;
-
   localStorage.setItem("todoData", JSON.stringify(TodoData));
-
   renderTodos();
 };
 
 const deleteTodo = (button) => {
   const todoCard = button.closest(".todoCard");
   const idx = Number(todoCard.dataset.index);
-
   TodoData.splice(idx, 1);
-
   localStorage.setItem("todoData", JSON.stringify(TodoData));
-
   renderTodos();
 };
 
 const plannerContainer = document.querySelector(".planner-grid");
-
 let dayPlanData = JSON.parse(localStorage.getItem("dayPlanData")) || [];
+
 function plannerTaskUi(time, value, index) {
   plannerContainer.innerHTML += `
-        <div class="time-slot">
-            <h3>${time}</h3>
-            <input type="text" class="plannerInput" data-index="${index}" placeholder="Enter your Goal..." value="${value}"/>
-        </div>
-    `;
+    <div class="time-slot">
+      <h3>${time}</h3>
+      <input type="text" class="plannerInput" data-index="${index}" placeholder="Enter your Goal..." value="${value}"/>
+    </div>
+  `;
 }
 
-const hours = Array.from({ length: 18 }, (_, i) => {
-  return `${6 + i}:00 - ${7 + i}:00`;
-});
-
+const hours = Array.from({ length: 18 }, (_, i) => `${6 + i}:00 - ${7 + i}:00`);
 hours.forEach((time, index) => {
   plannerTaskUi(time, dayPlanData[index] || "", index);
 });
@@ -267,13 +263,11 @@ let timer = null;
 function StopWatchUiUpdate() {
   const mins = String(Math.floor(seconds / 60)).padStart(2, "0");
   const secs = String(seconds % 60).padStart(2, "0");
-
   timerDisplay.textContent = `${mins}:${secs}`;
 }
 
 startBtn.addEventListener("click", () => {
   if (timer !== null) return;
-
   timer = setInterval(() => {
     if (seconds > 0) {
       seconds--;
@@ -281,7 +275,6 @@ startBtn.addEventListener("click", () => {
     } else {
       clearInterval(timer);
       timer = null;
-      alert("Time's Up!");
     }
   }, 1000);
 });
@@ -299,3 +292,29 @@ resetBtn.addEventListener("click", () => {
 });
 
 StopWatchUiUpdate();
+
+let focusText = localStorage.getItem("focusText") || "";
+focusInput.value = focusText;
+focusInput.addEventListener("input", () => {
+  localStorage.setItem("focusText", focusInput.value);
+});
+
+let streak = JSON.parse(localStorage.getItem("streakData")) || { count: 0, lastDate: null };
+function updateStreak() {
+  const today = new Date().toDateString();
+  if (streak.lastDate !== today && streak.lastDate !== null) {
+    const last = new Date(streak.lastDate);
+    const diff = (new Date() - last) / (1000 * 60 * 60 * 24);
+    if (diff <= 1.5) {
+      streak.count++;
+    } else {
+      streak.count = 1;
+    }
+  } else if (streak.lastDate === null) {
+    streak.count = 1;
+  }
+  streak.lastDate = today;
+  localStorage.setItem("streakData", JSON.stringify(streak));
+  streakCount.textContent = streak.count;
+}
+updateStreak();
