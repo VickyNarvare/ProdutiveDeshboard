@@ -82,13 +82,13 @@ let dark = JSON.parse(localStorage.getItem("theme")) || false;
 
 function applyTheme() {
   if (dark) {
-    main.style.backgroundImage = "url('./images/nightBg.png')";
+    main.style.backgroundImage = "url('./images/night1.png')";
     themeIcon.className = "ri-moon-clear-fill";
     themeToggle.classList.add("active");
     document.body.classList.remove("light");
     document.body.classList.add("dark");
   } else {
-    main.style.backgroundImage = "url('./images/dayBg.png')";
+    main.style.backgroundImage = "url('./images/day1.png')";
     themeIcon.className = "ri-sun-line";
     themeToggle.classList.remove("active");
     document.body.classList.remove("dark");
@@ -294,7 +294,7 @@ pauseBtn.addEventListener("click", () => {
 resetBtn.addEventListener("click", () => {
   clearInterval(timer);
   timer = null;
-  seconds = 25 * 60; 
+  seconds = 25 * 60;
   StopWatchUiUpdate();
 });
 

@@ -42,7 +42,7 @@ h1 {
 main {
   height: 100%;
   width: 100%;
-  background: url(./images/dayBg.png);
+  background: url(./images/day1.png);
   background-repeat: no-repeat;
   background-size: cover;
   padding: 10px;
@@ -62,8 +62,8 @@ main {
 }
 
 .dashboard-card {
-  width: 520px;
-  padding: 20px;
+  /* width: 520px; */
+  padding: 35px;
   align-self: flex-end;
   border-radius: 28px;
   background: var(--background);
@@ -176,8 +176,8 @@ main {
 }
 
 .productiveFunc .circle {
-  width: 70px;
-  height: 70px;
+  width: 60px;
+  height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -189,6 +189,10 @@ main {
   font-size: 28px;
   cursor: pointer;
   transition: .35s;
+}
+
+.productiveFunc .circle i {
+  font-size: 25px;
 }
 
 .circle:hover {
